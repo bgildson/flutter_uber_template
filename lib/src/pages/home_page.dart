@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uber_template/src/widgets/search_button.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../widgets/progress_bar.dart';
-import '../widgets/tile_place.dart';
-import '../widgets/tile_place_separator.dart';
+import '../widgets/widgets.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   static const String routeName = '/';
 
-  const HomePage({Key key}) : super(key: key);
+  HomePage({Key key}) : super(key: key);
+
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  GlobalKey<ScaffoldState> _scaffold = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) =>
     Scaffold(
+      key: _scaffold,
+      drawer: _buildDrawer(),
       body: Stack(
         children: <Widget>[
           // ever in background
@@ -29,7 +34,8 @@ class HomePage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(10),
               child: IconButton(
-                onPressed: () {},
+                onPressed: () =>
+                  _scaffold.currentState.openDrawer(),
                 icon: Icon(
                   Icons.menu,
                   size: 32,
@@ -91,5 +97,207 @@ class HomePage extends StatelessWidget {
           )
         ],
       )
+    );
+
+  _buildDrawerHeader() =>
+    Container(
+      decoration: BoxDecoration(
+        color: Colors.black,
+        border: Border(
+          bottom: BorderSide(
+            color: const Color(0xFF545454),
+          )
+        ),
+      ),
+      child: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              // photo
+              Padding(
+                padding: const EdgeInsets.only(right: 20),
+                child: Container(
+                  height: 60,
+                  width: 60,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(35),
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 0.5,
+                    ),
+                    image: DecorationImage(
+                      image: NetworkImage('http://interfacetreinamentos.com.br/wp-content/uploads/2016/04/img-profile-default.jpg'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+              // name and rating
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: Text(
+                        'Gildson Bezerra',
+                        maxLines: 1,
+                        softWrap: false,
+                        overflow: TextOverflow.fade,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(right: 2),
+                          child: Text(
+                            '5.00',
+                            style: TextStyle(
+                              color: const Color(0xFFA3A3A3),
+                            ),
+                          ),
+                        ),
+                        Icon(
+                          Icons.star,
+                          size: 14,
+                          color: const Color(0xFFA3A3A3),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+  Widget _buildDrawerAds() =>
+    Container(
+      color: Colors.black,
+      width: 300,
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            // ads header
+            Padding(
+              padding: const EdgeInsets.only(bottom: 14),
+              child: Text(
+                'Do more with your account',
+                style: TextStyle(
+                  color: const Color(0xFFA3A3A3),
+                ),
+              ),
+            ),
+            // TODO: create link button widget to assign a method/animation (every ad have that to have a link to another resource/tool)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 14),
+              child: Text(
+                'Get food delivery',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            Text(
+              'Make money driving',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+
+  Widget _buildDrawerItems() =>
+    Expanded(
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 20),
+          child: Column(
+            children: <Widget>[
+              DrawerItem(
+                text: 'Your Trips',
+                onPressed: () {},
+              ),
+              DrawerItem(
+                text: 'Help',
+                onPressed: () {},
+              ),
+              DrawerItem(
+                text: 'Payment',
+                positiveText: 'Get up to 5% off',
+                onPressed: () {},
+              ),
+              DrawerItem(
+                text: 'Free Rides',
+                onPressed: () {},
+              ),
+              DrawerItem(
+                text: 'Settings',
+                onPressed: () {},
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+  Widget _buildDrawerVersion() =>
+    Container(
+      height: 60,
+      decoration: BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            color: const Color(0xFFCCCCCC),
+            width: 1,
+          ),
+        ),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          // ?tag?
+          Expanded(
+            child: Text('Legal'),
+          ),
+          // version
+          Text(
+            'v4.266.10003',
+            style: TextStyle(color: const Color(0xFFCCCCCC)),
+          ),
+        ],
+      ),
+    );
+
+  Widget _buildDrawer() =>
+    Container(
+      color: Colors.white,
+      width: 300,
+      child: Column(
+        children: <Widget>[
+          // header
+          _buildDrawerHeader(),
+          // ads
+          _buildDrawerAds(),
+          // items
+          _buildDrawerItems(),
+          // app info/version
+          _buildDrawerVersion(),
+        ],
+      ),
     );
 }
