@@ -4,8 +4,8 @@ enum TilePlaceType { home, company, favorite, other, }
 
 const double kTilePaddingSize = 5;
 const double kIconBoxPaddingSize = 20;
-const double kIconContainerSize = 42;
-const double kIconSize = 22;
+const double kIconContainerSize = 34;
+const double kIconSize = 20;
 const double kTileHeight = kIconContainerSize + kIconBoxPaddingSize + kTilePaddingSize;
 
 class TilePlace extends StatelessWidget {

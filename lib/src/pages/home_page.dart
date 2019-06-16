@@ -67,8 +67,8 @@ class HomePage extends StatelessWidget {
                       left: 20,
                     ),
                     child: SearchButton(
-                      whereButtonOnPressed: () {},
-                      latestButtonOnPressed: () {},
+                      whereToButtonOnPressed: () {},
+                      scheduleButtonOnPressed: () {},
                     ),
                   ),
                   // saved places
