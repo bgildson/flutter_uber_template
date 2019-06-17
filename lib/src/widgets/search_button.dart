@@ -33,7 +33,7 @@ class SearchButton extends StatelessWidget {
                 child: Text(
                   'Where to?',
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 20,
                   ),
                 ),
               ),

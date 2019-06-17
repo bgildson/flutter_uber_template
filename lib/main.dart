@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:redux/redux.dart';
+import 'package:redux_prism/redux_prism.dart';
 
 import 'src/state/app/app.dart';
 import 'src/app.dart';
@@ -9,7 +10,8 @@ void main() {
     appReducer,
     distinct: true,
     middleware: []
-      ..addAll(createAllMiddlewares()),
+      ..addAll(createAllMiddlewares())
+      ..add(StorePrism.middleware),
     initialState: AppState.initial(),
   );
 

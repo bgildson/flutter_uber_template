@@ -17,13 +17,15 @@ environment:
   sdk: '>=2.1.0 <3.0.0'
 
 dependencies:
-  equatable:
+  dio: ^2.1.7
+  equatable: ^0.2.6
   flutter:
     sdk: flutter
-  flutter_redux:
-  google_maps_flutter:
-  redux:
-  redux_prism:
+  flutter_redux: ^0.5.3
+  google_maps_flutter: ^0.5.16
+  recase: ^2.0.1
+  redux: ^3.0.0
+  redux_prism: ^0.1.2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

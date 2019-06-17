@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 enum TilePlaceType { home, company, favorite, other, }
 
 const double kTilePaddingSize = 5;
-const double kIconBoxPaddingSize = 20;
+const double kIconBoxWidth = 74;
 const double kIconContainerSize = 34;
 const double kIconSize = 20;
-const double kTileHeight = kIconContainerSize + kIconBoxPaddingSize + kTilePaddingSize;
+const double kTileHeight = 84;
 
 class TilePlace extends StatelessWidget {
   final TilePlaceType type;
@@ -33,21 +33,24 @@ class TilePlace extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: onPressed,
-        child: Padding(
-          padding: const EdgeInsets.all(kTilePaddingSize),
-          child: Row(
-            children: <Widget>[
-              // icon
-              Padding(
-                padding: const EdgeInsets.all(kIconBoxPaddingSize),
-                child: _buildIcon(),
-              ),
-              // details
-              Expanded(
+        child: Row(
+          children: <Widget>[
+            // icon
+            Container(
+              height: kTileHeight,
+              width: kIconBoxWidth,
+              alignment: Alignment.center,
+              padding: const EdgeInsets.only(left: 5),
+              child: _buildIcon(),
+            ),
+            // details
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(right: 20),
                 child: _buildDetails(),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -100,7 +103,7 @@ class TilePlace extends StatelessWidget {
         Text(
           title,
           style: TextStyle(
-            fontSize: 18,
+            fontSize: 15,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -109,6 +112,9 @@ class TilePlace extends StatelessWidget {
           softWrap: false,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            fontSize: 13
+          ),
         ),
       ],
     );

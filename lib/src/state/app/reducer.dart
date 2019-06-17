@@ -1,12 +1,7 @@
-import 'package:redux/redux.dart';
-
-import 'actions.dart';
 import 'model.dart';
+import '../auth/auth.dart';
 
-final appReducer = combineReducers<AppState>([
-  TypedReducer<AppState, InitializeAction>(_initialize),
-]);
-
-AppState _initialize(AppState state, InitializeAction action) {
-  return state;
-}
+AppState appReducer(AppState state, action) =>
+  AppState(
+    auth: authReducer(state.auth, action),
+  );

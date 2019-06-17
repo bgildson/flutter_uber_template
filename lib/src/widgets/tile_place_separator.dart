@@ -10,7 +10,7 @@ class TilePlaceSeparator extends StatelessWidget {
     Align(
       alignment: Alignment.centerRight,
       child: Container(
-        width: MediaQuery.of(context).size.width - (kIconBoxPaddingSize * 2 + kIconContainerSize),
+        width: MediaQuery.of(context).size.width - kIconBoxWidth,
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(

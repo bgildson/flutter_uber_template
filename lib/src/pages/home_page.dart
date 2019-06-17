@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import 'package:flutter_uber_template/src/containers/home_salutation.dart';
+import '../containers/containers.dart';
 import '../widgets/widgets.dart';
 
 class HomePage extends StatefulWidget {
@@ -52,25 +54,15 @@ class _HomePageState extends State<HomePage> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   // salutation
-                  Container(
-                    height: 60,
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Good evening, ?Gildson?',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600
-                      ),
-                    ),
-                  ),
+                  HomeSalutation(),
                   // progress
                   ProgressBar(),
                   // searchbox
                   Padding(
                     padding: const EdgeInsets.only(
-                      top: 20,
-                      right: 20,
-                      left: 20,
+                      top: 16,
+                      right: 16,
+                      left: 16,
                     ),
                     child: SearchButton(
                       whereToButtonOnPressed: () {},
@@ -97,87 +89,6 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       )
-    );
-
-  _buildDrawerHeader() =>
-    Container(
-      decoration: BoxDecoration(
-        color: Colors.black,
-        border: Border(
-          bottom: BorderSide(
-            color: const Color(0xFF545454),
-          )
-        ),
-      ),
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              // photo
-              Padding(
-                padding: const EdgeInsets.only(right: 20),
-                child: Container(
-                  height: 60,
-                  width: 60,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(35),
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 0.5,
-                    ),
-                    image: DecorationImage(
-                      image: NetworkImage('http://interfacetreinamentos.com.br/wp-content/uploads/2016/04/img-profile-default.jpg'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ),
-              // name and rating
-              Expanded(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      child: Text(
-                        'Gildson Bezerra',
-                        maxLines: 1,
-                        softWrap: false,
-                        overflow: TextOverflow.fade,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),
-                      ),
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(right: 2),
-                          child: Text(
-                            '5.00',
-                            style: TextStyle(
-                              color: const Color(0xFFA3A3A3),
-                            ),
-                          ),
-                        ),
-                        Icon(
-                          Icons.star,
-                          size: 14,
-                          color: const Color(0xFFA3A3A3),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
     );
 
   Widget _buildDrawerAds() =>
@@ -290,7 +201,7 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         children: <Widget>[
           // header
-          _buildDrawerHeader(),
+          DrawerUserResume(),
           // ads
           _buildDrawerAds(),
           // items
