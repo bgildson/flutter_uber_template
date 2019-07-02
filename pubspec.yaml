@@ -23,6 +23,7 @@ dependencies:
     sdk: flutter
   flutter_redux: ^0.5.3
   google_maps_flutter: ^0.5.16
+  location: ^2.3.5
   recase: ^2.0.1
   redux: ^3.0.0
   redux_prism: ^0.1.2

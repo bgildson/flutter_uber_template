@@ -30,6 +30,9 @@ class _HomePageState extends State<HomePage> {
               zoom: 16,
             ),
             mapType: MapType.terrain,
+            myLocationEnabled: true,
+            rotateGesturesEnabled: false,
+
           ),
           // menu button
           SafeArea(
