@@ -1,16 +1,19 @@
 # flutter_uber_template
 
-A new Flutter project.
+This is an template implementation of the [Uber App (Passenger)](https://play.google.com/store/apps/details?id=com.ubercab) with Flutter.
 
-## Getting Started
+## How to Run the App
 
-This project is a starting point for a Flutter application.
+1. Ensure that you have the flutter installed, how described [here](https://flutter.io/get-started/install/)
 
-A few resources to get you started if this is your first Flutter project:
+2. Clone this repository, in the terminal
+```bash
+git clone https://github.com/bgildson/flutter_uber_template
+```
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+3. To use Google Maps, will be necessary add one API Key to the project, follow the step [Get the API key](https://developers.google.com/maps/documentation/javascript/get-api-key#get-the-api-key) to generate one and after install the key like in this [tutorial](https://pub.dev/packages/google_maps_flutter#getting-started).
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+4. In the terminal, walk to the project root folder and run
+```bash
+flutter run
+```
