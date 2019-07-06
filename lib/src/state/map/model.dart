@@ -4,33 +4,63 @@ import 'package:meta/meta.dart';
 
 @immutable
 class MapState extends Equatable {
-  final LatLng location;
+  final LatLng userPosition;
+  final LatLng cameraPosition;
   final double zoom;
   static final double zoomDefault = 16;
 
-  MapState({this.location, double zoom})
-    : this.zoom = zoom ?? zoomDefault,
-      super([location, zoom]);
+  MapState({this.userPosition, this.cameraPosition, this.zoom})
+    : super([userPosition, cameraPosition, zoom]);
 
   factory MapState.initial() =>
     MapState(
-      location: LatLng(-5.8411396, -35.2106268),
+      userPosition: null,
+      cameraPosition: null,
       zoom: zoomDefault,
     );
 
   MapState copyWith({
-    LatLng location,
+    LatLng userPosition,
+    LatLng cameraPosition,
     double zoom,
   }) =>
     MapState(
-      location: location ?? this.location,
+      userPosition: userPosition ?? this.userPosition,
+      cameraPosition: cameraPosition ?? this.cameraPosition,
       zoom: zoom ?? this.zoom,
+    );
+
+  Map<String, dynamic> toJson() =>
+    {
+      'user_position': {
+        'latitude': userPosition.latitude,
+        'longitude': userPosition.longitude
+      },
+      'camera_position': {
+        'latitude': cameraPosition.latitude,
+        'longitude': cameraPosition.longitude
+      },
+      'zoom': zoom,
+    };
+
+  MapState fromJson(Map<String, dynamic> json) =>
+    MapState(
+      userPosition: LatLng(
+        double.tryParse(json['user_position']['latitude']),
+        double.tryParse(json['user_position']['longitude'])
+      ),
+      cameraPosition: LatLng(
+        double.tryParse(json['camera_position']['latitude']),
+        double.tryParse(json['camera_position']['longitude'])
+      ),
+      zoom: double.tryParse(json['zoom']),
     );
 
   @override
   String toString() =>
     'MapState { '
-    'location: $location, '
+    'userPosition: $userPosition, '
+    'cameraPosition: $cameraPosition, '
     'zoom: $zoom, '
     '}';
 }

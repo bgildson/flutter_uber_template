@@ -1,14 +1,19 @@
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:redux/redux.dart';
 
 import 'actions.dart';
 import 'model.dart';
 
 final mapReducer = combineReducers<MapState>([
-  TypedReducer<MapState, ListenGeolocationSuccessAction>(_listenGeolocationSuccess)
+  TypedReducer<MapState, SetUserPositionAction>(_setUserPosition),
+  TypedReducer<MapState, SetCameraPositionAction>(_setCameraPosition),
 ]);
 
-MapState _listenGeolocationSuccess(MapState state, ListenGeolocationSuccessAction action) =>
+MapState _setUserPosition(MapState state, SetUserPositionAction action) =>
   state.copyWith(
-    location: LatLng(action.latitude, action.longitude)
+    userPosition: action.userPosition
+  );
+
+MapState _setCameraPosition(MapState state, SetCameraPositionAction action) =>
+  state.copyWith(
+    cameraPosition: action.cameraPosition
   );

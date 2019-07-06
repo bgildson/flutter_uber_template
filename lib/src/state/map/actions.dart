@@ -1,3 +1,4 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:meta/meta.dart';
 
 @immutable
@@ -8,16 +9,27 @@ class ListenGeolocationAction {
 }
 
 @immutable
-class ListenGeolocationSuccessAction {
-  final double latitude;
-  final double longitude;
+class SetUserPositionAction {
+  final LatLng userPosition;
 
-  ListenGeolocationSuccessAction({this.latitude, this.longitude});
+  SetUserPositionAction({this.userPosition});
 
   @override
   String toString() =>
-    'ListenGeolocationSuccessAction { '
-    'latitude: $latitude, '
-    'longitude: $longitude, '
+    'SetUserPositionAction { '
+    'userPosition: $userPosition, '
+    '}';
+}
+
+@immutable
+class SetCameraPositionAction {
+  final LatLng cameraPosition;
+
+  SetCameraPositionAction({this.cameraPosition});
+
+  @override
+  String toString() =>
+    'SetCameraPositionAction { '
+    'cameraPosition: $cameraPosition, '
     '}';
 }

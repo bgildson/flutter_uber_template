@@ -24,16 +24,7 @@ class _HomePageState extends State<HomePage> {
       body: Stack(
         children: <Widget>[
           // ever in background
-          GoogleMap(
-            initialCameraPosition: CameraPosition(
-              target: LatLng(-5.8411396, -35.2106268),
-              zoom: 16,
-            ),
-            mapType: MapType.terrain,
-            myLocationEnabled: true,
-            rotateGesturesEnabled: false,
-
-          ),
+          MapBackground(),
           // menu button
           SafeArea(
             child: Padding(
