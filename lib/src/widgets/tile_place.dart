@@ -3,22 +3,30 @@ import 'package:flutter/material.dart';
 enum TilePlaceType { home, company, favorite, other, }
 
 const double kTilePaddingSize = 5;
+// default sizes
+const double kTileHeight = 84;
 const double kIconBoxWidth = 74;
 const double kIconContainerSize = 34;
 const double kIconSize = 20;
-const double kTileHeight = 84;
+// compact sizes
+const double kTileHeightCompact = 64;
+const double kIconBoxWidthCompact = 64;
+const double kIconContainerSizeCompact = 30;
+const double kIconSizeCompact = 17;
 
 class TilePlace extends StatelessWidget {
   final TilePlaceType type;
   final String title;
   final String description;
+  final bool compact;
   final VoidCallback onPressed;
 
   const TilePlace({
     Key key,
     @required this.title,
-    @required this.description,
+    this.description: '',
     TilePlaceType type,
+    this.compact: false,
     @required this.onPressed,
   })
     : assert(title != null),
@@ -37,8 +45,12 @@ class TilePlace extends StatelessWidget {
           children: <Widget>[
             // icon
             Container(
-              height: kTileHeight,
-              width: kIconBoxWidth,
+              height: compact
+                ? kTileHeightCompact
+                : kTileHeight,
+              width: compact
+                ? kIconBoxWidthCompact
+                : kIconBoxWidth,
               alignment: Alignment.center,
               padding: const EdgeInsets.only(left: 5),
               child: _buildIcon(),
@@ -82,8 +94,12 @@ class TilePlace extends StatelessWidget {
 
   Widget _buildIcon() =>
     Container(
-      height: kIconContainerSize,
-      width: kIconContainerSize,
+      height: compact
+        ? kIconContainerSizeCompact
+        : kIconContainerSize,
+      width: compact
+        ? kIconContainerSizeCompact
+        : kIconContainerSize,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
         color: _iconBackground
@@ -92,7 +108,9 @@ class TilePlace extends StatelessWidget {
       child: Icon(
         _icon,
         color: Colors.white,
-        size: kIconSize,
+        size: compact
+          ? kIconSizeCompact
+          : kIconSize,
       ),
     );
 
@@ -104,18 +122,25 @@ class TilePlace extends StatelessWidget {
           title,
           style: TextStyle(
             fontSize: 15,
-            fontWeight: FontWeight.w500,
+            fontWeight: compact
+              ? FontWeight.w400
+              : FontWeight.w500,
           ),
         ),
-        Text(
-          description,
-          softWrap: false,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(
-            fontSize: 13
-          ),
-        ),
+        description == ''
+          ? Container()
+          : Text(
+              description,
+              softWrap: false,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 13,
+                color: compact
+                  ? const Color(0xFFABABAB)
+                  : Colors.black,
+              ),
+            ),
       ],
     );
 }
