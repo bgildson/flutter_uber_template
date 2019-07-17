@@ -6,6 +6,7 @@ import 'package:redux_prism/redux_prism.dart';
 
 import 'pages/pages.dart';
 import 'state/state.dart';
+import 'utils/utils.dart';
 
 class App extends StatefulWidget {
   final Store<AppState> store;
@@ -26,10 +27,10 @@ class _AppState extends State<App> {
     _actionsSubscription = StorePrism.actions.listen((action) {
       if (action is AuthenticatedAction) {
         _navigatorKey.currentState
-          .pushAndRemoveUntil(MaterialPageRoute(builder: (_) => HomePage()), (_) => false);
+          .pushAndRemoveUntil(CircleRouteTransition(page: HomePage()), (_) => false);
       } else if (action is UnauthenticatedAction) {
         _navigatorKey.currentState
-          .pushAndRemoveUntil(MaterialPageRoute(builder: (_) => LoginPage()), (_) => false);
+          .pushAndRemoveUntil(CircleRouteTransition(page: LoginPage()), (_) => false);
       }
     });
 
@@ -48,7 +49,9 @@ class _AppState extends State<App> {
       store: widget.store,
       child: MaterialApp(
         navigatorKey: _navigatorKey,
+        initialRoute: LoadingPage.routeName,
         routes: {
+          LoadingPage.routeName: (BuildContext context) => LoadingPage(),
           LoginPage.routeName: (BuildContext context) => LoginPage(),
           HomePage.routeName: (BuildContext context) => HomePage(),
         },
