@@ -38,6 +38,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.7.2+1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
@@ -75,3 +76,11 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: 'assets/icon/icon.png'
+  adaptive_icon_foreground: 'assets/icon/foreground.png'
+  adaptive_icon_background: 'assets/icon/background.png'
